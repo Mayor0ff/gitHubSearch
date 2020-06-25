@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		7AE45BA924A4A2AC0053D33B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AE45BA724A4A2AC0053D33B /* Main.storyboard */; };
 		7AE45BAB24A4A2AE0053D33B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AE45BAA24A4A2AE0053D33B /* Assets.xcassets */; };
 		7AE45BAE24A4A2AE0053D33B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AE45BAC24A4A2AE0053D33B /* LaunchScreen.storyboard */; };
+		7AE45BB624A4ADF00053D33B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AE45BB524A4ADF00053D33B /* GoogleService-Info.plist */; };
 		DA64CF116CD476E8C8256A66 /* Pods_GitHubSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19AF84E11D7271448DC53C5 /* Pods_GitHubSearch.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 		7AE45BAA24A4A2AE0053D33B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7AE45BAD24A4A2AE0053D33B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7AE45BAF24A4A2AE0053D33B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7AE45BB524A4ADF00053D33B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A66A39D99C9C857D1D31696A /* Pods-GitHubSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubSearch.debug.xcconfig"; path = "Target Support Files/Pods-GitHubSearch/Pods-GitHubSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		C19AF84E11D7271448DC53C5 /* Pods_GitHubSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 				7AE45BAA24A4A2AE0053D33B /* Assets.xcassets */,
 				7AE45BAC24A4A2AE0053D33B /* LaunchScreen.storyboard */,
 				7AE45BAF24A4A2AE0053D33B /* Info.plist */,
+				7AE45BB524A4ADF00053D33B /* GoogleService-Info.plist */,
 			);
 			path = GitHubSearch;
 			sourceTree = "<group>";
@@ -85,7 +88,6 @@
 				A66A39D99C9C857D1D31696A /* Pods-GitHubSearch.debug.xcconfig */,
 				3B811DF2C3D924E103FF859C /* Pods-GitHubSearch.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -150,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AE45BAE24A4A2AE0053D33B /* LaunchScreen.storyboard in Resources */,
+				7AE45BB624A4ADF00053D33B /* GoogleService-Info.plist in Resources */,
 				7AE45BAB24A4A2AE0053D33B /* Assets.xcassets in Resources */,
 				7AE45BA924A4A2AC0053D33B /* Main.storyboard in Resources */,
 			);
