@@ -14,4 +14,6 @@ target 'GitHubSearch' do
   pod 'Alamofire'
   pod 'Moya'
 
+  pod 'Firebase'
+  pod 'Firebase/Auth'
 end
