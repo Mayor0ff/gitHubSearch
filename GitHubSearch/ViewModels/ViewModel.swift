@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+protocol ViewModel {
+    associatedtype Service
+    init(withService service: Service)
+}

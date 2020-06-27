@@ -6,4 +6,11 @@
 //  Copyright © 2020 Artur Maiorskyi. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import RxSwift
+
+class SearchCell: UITableViewCell {
+    @IBOutlet weak var textField: UITextField!
+    
+    public var disposeBag = DisposeBag()
+}

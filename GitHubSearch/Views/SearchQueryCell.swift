@@ -6,4 +6,8 @@
 //  Copyright © 2020 Artur Maiorskyi. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class SearchQueryCell: UITableViewCell {
+    @IBOutlet weak var searchQuerylabel: UILabel!
+}

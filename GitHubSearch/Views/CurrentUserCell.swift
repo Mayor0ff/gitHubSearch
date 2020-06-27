@@ -6,4 +6,12 @@
 //  Copyright © 2020 Artur Maiorskyi. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class CurrentUserCell: UITableViewCell {
+    @IBOutlet weak var profilePictureImageView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
+    
+    @IBOutlet weak var signOutButton: UIButton!
+}

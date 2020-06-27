@@ -6,4 +6,11 @@
 //  Copyright © 2020 Artur Maiorskyi. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import RxSwift
+
+class LoadingCell: UITableViewCell {
+    @IBOutlet weak var stopButton: UIButton!
+    
+    public var disposeBag = DisposeBag()
+}

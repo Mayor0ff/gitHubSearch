@@ -6,4 +6,10 @@
 //  Copyright © 2020 Artur Maiorskyi. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import RxSwift
+import RxCocoa
+
+class SignInCell: UITableViewCell {
+    @IBOutlet weak var signInButton: UIButton!
+}
