@@ -10,6 +10,7 @@ import UIKit
 import RxDataSources
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class MainViewController: UIViewController {
     public var viewModel: MainViewModel!
@@ -33,6 +34,10 @@ class MainViewController: UIViewController {
                 
                 cell.usernameLabel.text = currentUser.username
                 cell.bioLabel.text = currentUser.bio
+                
+                if let url = URL(string: currentUser.profilePictureUrl) {
+                    cell.profilePictureImageView.kf.setImage(with: url)
+                }
                 
                 cell.signOutButton.addTarget(self, action: #selector(self.signOutTap), for: .touchUpInside)
                 
