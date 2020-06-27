@@ -192,4 +192,10 @@ class MainViewModel: ViewModel {
         self.isLoading = false
         self.updateSections()
     }
+    
+    public func deleteSearchQuery(at index: Int) {
+        let searchQuery = service.getSearchHistory()[index]
+        self.service.deleteSearch(searchQuery)
+        self.updateSections()
+    }
 }

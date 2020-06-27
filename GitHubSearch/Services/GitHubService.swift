@@ -151,5 +151,11 @@ class GitHubService {
             self.realm.add(searchResult)
         }
     }
+    
+    public func deleteSearch(_ rearchRequest: SearchRequest) {
+        try? self.realm.write {
+            self.realm.delete(rearchRequest)
+        }
+    }
 }
 

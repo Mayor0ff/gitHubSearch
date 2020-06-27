@@ -120,6 +120,15 @@ class MainViewController: UIViewController {
         case .searchQueries(items: let items):
             return "Search history"
         }
+    }, canEditRowAtIndexPath: { dataSource, indexPath in
+        switch dataSource.sectionModels[indexPath.section] {
+        case .auth:
+            return false
+        case .repositories:
+            return false
+        case .searchQueries:
+            return true
+        }
     })
     
     override func viewDidLoad() {
@@ -182,6 +191,12 @@ class MainViewController: UIViewController {
                     let request = item.request {
                     self.viewModel.selectSearchRequest(request)
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        tableView.rx.itemDeleted
+            .subscribe(onNext: { indexPath in
+                self.viewModel.deleteSearchQuery(at: indexPath.row)
             })
             .disposed(by: disposeBag)
     }
