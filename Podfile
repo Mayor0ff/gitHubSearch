@@ -7,13 +7,17 @@ target 'GitHubSearch' do
 
   # Pods for GitHubSearch
   pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
 
   pod 'RealmSwift'
   pod 'RxRealm'
 
   pod 'Alamofire'
   pod 'Moya'
+  pod 'Moya/RxSwift'
 
   pod 'Firebase'
   pod 'Firebase/Auth'
+  pod 'RxFirebase/Auth'
 end
