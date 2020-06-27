@@ -87,20 +87,18 @@ class MainViewModel: ViewModel {
         
         newSections.append(.auth(items: [.auth(item: authItem)]))
         
-        if service.getCurrentUser() == nil {
-            var queryItems: [SectionItem] = []
+        var queryItems: [SectionItem] = []
 
-            for searchRequest in service.getSearchHistory() {
-                let searchQueryItem = SearchQueryItem(
-                    query: searchRequest.searchQuery,
-                    request: searchRequest)
+        for searchRequest in service.getSearchHistory() {
+            let searchQueryItem = SearchQueryItem(
+                query: searchRequest.searchQuery,
+                request: searchRequest)
 
-                queryItems.append(.searchQuery(item: searchQueryItem))
-            }
+            queryItems.append(.searchQuery(item: searchQueryItem))
+        }
 
-            if queryItems.count > 0 {
-                newSections.append(.searchQueries(items: queryItems))
-            }
+        if queryItems.count > 0 {
+            newSections.append(.searchQueries(items: queryItems))
         }
         
         if let searchRequest = searchRequest {
