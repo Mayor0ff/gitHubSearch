@@ -216,12 +216,7 @@ class MainViewController: UIViewController {
     }
     
     private func signOutTap() {
-        let result = viewModel.signOutAction()
-        if case .failure = result {
-            self.showAlert(
-                withTitle: "Error",
-                message: "An error occured. Try again.")
-        }
+        viewModel.signOutAction()
     }
     
     private func showAlert(withTitle title: String, message: String) {

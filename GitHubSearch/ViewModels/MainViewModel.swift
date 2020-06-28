@@ -129,6 +129,7 @@ class MainViewModel: ViewModel {
             })
     }
     
+    @discardableResult
     public func signOutAction() -> Result<Void, GitHubService.SignOutError> {
         self.showSearchBar.onNext(false)
         self.searchRequest = nil
