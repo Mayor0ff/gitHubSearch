@@ -176,7 +176,7 @@ class MainViewController: UIViewController {
                 let tableViewMaxOffset = self.tableView.contentSize.height - self.tableView.frame.height
                 return tableViewMaxOffset <= offset.y
             }
-            .flatMap { _ in  self.viewModel.moreResultsAction() }
+            .flatMap { _ in self.viewModel.moreResultsAction() }
             .subscribe(onError: { error in
                 self.showAlert(
                     withTitle: "Error",
