@@ -24,10 +24,10 @@ class GitHubService {
     
     private var disposeBag = DisposeBag()
     
-    public init() throws {
-        apiProvider = MoyaProvider<GitHubMoyaService>()
-        oauthProvider = OAuthProvider(providerID: Constants.providerID)
-        realm = try Realm()
+    public init(realm: Realm) {
+        self.apiProvider = MoyaProvider<GitHubMoyaService>()
+        self.oauthProvider = OAuthProvider(providerID: Constants.providerID)
+        self.realm = realm
     }
     
     // MARK: - Authentication

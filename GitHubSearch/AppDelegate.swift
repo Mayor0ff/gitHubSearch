@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,8 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         if let rootNavigationController = window?.rootViewController as? UINavigationController,
-            let rootViewController = rootNavigationController.topViewController as? MainViewController,
-            let gitHubService = try? GitHubService() {
+            let rootViewController = rootNavigationController.topViewController as? MainViewController {
+            let realm = try! Realm()
+            let gitHubService = GitHubService(realm: realm)
             
             let mainViewModel = MainViewModel(withService: gitHubService)
             rootViewController.viewModel = mainViewModel
