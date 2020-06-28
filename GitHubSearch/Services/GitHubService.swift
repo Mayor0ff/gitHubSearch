@@ -152,9 +152,9 @@ class GitHubService {
         }
     }
     
-    public func deleteSearch(_ rearchRequest: SearchRequest) {
-        try? self.realm.write {
-            self.realm.delete(rearchRequest)
+    public func deleteSearch(_ searchRequest: SearchRequest) {
+        try? realm.write {
+            realm.delete(searchRequest)
         }
     }
 }
