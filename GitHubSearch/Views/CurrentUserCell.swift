@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class CurrentUserCell: UITableViewCell {
     @IBOutlet weak var profilePictureImageView: UIImageView!
@@ -14,4 +15,6 @@ class CurrentUserCell: UITableViewCell {
     @IBOutlet weak var bioLabel: UILabel!
     
     @IBOutlet weak var signOutButton: UIButton!
+    
+    public var disposeBag = DisposeBag()
 }

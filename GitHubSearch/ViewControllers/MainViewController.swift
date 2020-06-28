@@ -39,7 +39,9 @@ class MainViewController: UIViewController {
                     cell.profilePictureImageView.kf.setImage(with: url)
                 }
                 
-                cell.signOutButton.addTarget(self, action: #selector(self.signOutTap), for: .touchUpInside)
+                cell.signOutButton.rx.tap
+                    .subscribe(onNext: self.signOutTap)
+                    .disposed(by: cell.disposeBag)
                 
                 return cell
             } else {
@@ -50,7 +52,9 @@ class MainViewController: UIViewController {
                     return UITableViewCell()
                 }
                 
-                cell.signInButton.addTarget(self, action: #selector(self.onSignInTap), for: .touchUpInside)
+                cell.signInButton.rx.tap
+                    .subscribe(onNext: self.onSignInTap)
+                    .disposed(by: cell.disposeBag)
                 
                 return cell
             }
@@ -201,7 +205,7 @@ class MainViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    @objc func onSignInTap() {
+    private func onSignInTap() {
         viewModel.signInAction()
             .subscribe(onError: { error in
                 self.showAlert(
@@ -211,7 +215,7 @@ class MainViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    @objc func signOutTap() {
+    private func signOutTap() {
         let result = viewModel.signOutAction()
         if case .failure = result {
             self.showAlert(

@@ -12,4 +12,6 @@ import RxCocoa
 
 class SignInCell: UITableViewCell {
     @IBOutlet weak var signInButton: UIButton!
+    
+    public var disposeBag = DisposeBag()
 }
