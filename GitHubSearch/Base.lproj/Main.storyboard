@@ -26,7 +26,7 @@
         <!--GitHub-->
         <scene sceneID="ch6-kO-GJd">
             <objects>
-                <viewController id="a3a-ci-Sfr" customClass="MainViewController" customModule="GitHubSearch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="a3a-ci-Sfr" customClass="MainViewController" customModule="GitHubSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sdy-Lh-pws">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,7 +39,8 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0OL-vS-Ehb">
-                                            <rect key="frame" x="16" y="0.0" width="382" height="31"/>
+                                            <rect key="frame" x="16" y="0.0" width="382" height="35"/>
+                                            <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                         </textField>
@@ -48,7 +49,7 @@
                                     <constraints>
                                         <constraint firstItem="0OL-vS-Ehb" firstAttribute="leading" secondItem="rTK-Rs-JXa" secondAttribute="leading" constant="16" id="aCm-PA-Fjt"/>
                                         <constraint firstItem="0OL-vS-Ehb" firstAttribute="top" secondItem="rTK-Rs-JXa" secondAttribute="top" id="bbb-kO-tGt"/>
-                                        <constraint firstAttribute="bottom" secondItem="0OL-vS-Ehb" secondAttribute="bottom" constant="24" id="f4R-OB-PMc"/>
+                                        <constraint firstAttribute="bottom" secondItem="0OL-vS-Ehb" secondAttribute="bottom" constant="20" id="f4R-OB-PMc"/>
                                         <constraint firstAttribute="trailing" secondItem="0OL-vS-Ehb" secondAttribute="trailing" constant="16" id="jIj-fj-Ydb"/>
                                     </constraints>
                                 </view>
@@ -336,7 +337,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ZUD-lU-JyR" secondAttribute="bottom" id="Cc1-dh-w0w"/>
                             <constraint firstItem="ZUD-lU-JyR" firstAttribute="top" secondItem="Sdy-Lh-pws" secondAttribute="top" id="Ivs-PR-Vjb"/>
