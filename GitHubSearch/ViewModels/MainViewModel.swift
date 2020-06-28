@@ -195,8 +195,14 @@ class MainViewModel: ViewModel {
     }
     
     public func deleteSearchQuery(at index: Int) {
-        let searchQuery = service.getSearchHistory()[index]
-        self.service.deleteSearch(searchQuery)
+        let searchRequest = service.getSearchHistory()[index]
+        
+        if self.searchRequest?.searchQuery == searchRequest.searchQuery {
+            self.searchRequest = nil
+            self.updateSections()
+        }
+        
+        self.service.deleteSearch(searchRequest)
         self.updateSections()
     }
 }
