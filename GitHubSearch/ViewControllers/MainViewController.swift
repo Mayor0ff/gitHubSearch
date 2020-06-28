@@ -25,12 +25,9 @@ class MainViewController: UIViewController {
         switch item {
         case .auth(let authItem):
             if authItem.isLoggedIn, let currentUser = authItem.currentUser {
-                guard let cell = tableView.dequeueReusableCell(
+                let cell = tableView.dequeueReusableCell(
                     withIdentifier: "currentUserCell",
-                    for: indexPath) as? CurrentUserCell
-                else {
-                    return UITableViewCell()
-                }
+                    for: indexPath) as! CurrentUserCell
                 
                 cell.usernameLabel.text = currentUser.username
                 cell.bioLabel.text = currentUser.bio
@@ -45,12 +42,9 @@ class MainViewController: UIViewController {
                 
                 return cell
             } else {
-                guard let cell = tableView.dequeueReusableCell(
+                let cell = tableView.dequeueReusableCell(
                     withIdentifier: "signInCell",
-                    for: indexPath) as? SignInCell
-                else {
-                    return UITableViewCell()
-                }
+                    for: indexPath) as! SignInCell
                 
                 cell.signInButton.rx.tap
                     .subscribe(onNext: self.onSignInTap)
@@ -60,12 +54,9 @@ class MainViewController: UIViewController {
             }
             
         case .repository(let item):
-            guard let cell = tableView.dequeueReusableCell(
+            let cell = tableView.dequeueReusableCell(
                 withIdentifier: "repositoryCell",
-                for: indexPath) as? GitHubRepositoryCell
-            else {
-                return UITableViewCell()
-            }
+                for: indexPath) as! GitHubRepositoryCell
             
             cell.nameLabel.text = item.name
             
@@ -88,12 +79,9 @@ class MainViewController: UIViewController {
             return cell
             
         case .loading:
-            guard let cell = tableView.dequeueReusableCell(
+            let cell = tableView.dequeueReusableCell(
                 withIdentifier: "loadingCell",
-                for: indexPath) as? LoadingCell
-            else {
-                return UITableViewCell()
-            }
+                for: indexPath) as! LoadingCell
             
             cell.stopButton.rx.tap
                 .subscribe(onNext: self.viewModel.stopLoadingAction)
@@ -102,12 +90,9 @@ class MainViewController: UIViewController {
             return cell
             
         case .searchQuery(let item):
-            guard let cell = tableView.dequeueReusableCell(
+            let cell = tableView.dequeueReusableCell(
                 withIdentifier: "searchQueryCell",
-                for: indexPath) as? SearchQueryCell
-            else {
-                return UITableViewCell()
-            }
+                for: indexPath) as! SearchQueryCell
             
             cell.searchQuerylabel.text = item.query
             
