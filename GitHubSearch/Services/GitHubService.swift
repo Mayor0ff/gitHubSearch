@@ -146,6 +146,12 @@ class GitHubService {
             })
     }
     
+    public func viewRepository(_ repository: GitHubRepository) {
+        try? self.realm.write {
+            repository.viewed = true
+        }
+    }
+    
     public func saveSearch(_ searchResult: SearchRequest) {
         try? self.realm.write {
             self.realm.add(searchResult)

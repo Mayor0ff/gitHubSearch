@@ -150,6 +150,13 @@ class MainViewModel: ViewModel {
         self.updateSections()
     }
     
+    public func selectRepository(_ repository: GitHubRepository) {
+        guard let url = URL(string: repository.webUrl) else { return }
+        service.viewRepository(repository)
+        UIApplication.shared.open(url)
+        self.updateSections()
+    }
+    
     public func searchAction() -> Observable<GitHubRepository> {
         guard searchQuery.count > 0 else { return .empty() }
         

@@ -15,4 +15,5 @@ class GitHubRepositoryCell: UITableViewCell {
     @IBOutlet weak var starsLabel: UILabel!
     @IBOutlet weak var watchersLabel: UILabel!
     @IBOutlet weak var forksLabel: UILabel!
+    @IBOutlet weak var viewedLabel: UILabel!
 }

@@ -129,11 +129,25 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hXQ-74-DvC">
                                                     <rect key="frame" x="20" y="11" width="303" height="56"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="apple/swift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhY-qC-nYd">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="6w5-Wc-rTC">
                                                             <rect key="frame" x="0.0" y="0.0" width="303" height="24"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="apple/swift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhY-qC-nYd">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="242" height="24"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Viewed" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqD-Mu-8ce">
+                                                                    <rect key="frame" x="243" y="0.0" width="60" height="24"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="60" id="2Ib-vK-W2s"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xx9-Ta-iwj">
                                                             <rect key="frame" x="0.0" y="24" width="303" height="32"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -229,6 +243,7 @@
                                             <outlet property="languageLabel" destination="GMt-QQ-bA6" id="wEP-U5-xWs"/>
                                             <outlet property="nameLabel" destination="ZhY-qC-nYd" id="3mV-A7-FLk"/>
                                             <outlet property="starsLabel" destination="Lk5-aV-Rkn" id="d1a-PK-I39"/>
+                                            <outlet property="viewedLabel" destination="NqD-Mu-8ce" id="QJo-hv-fG5"/>
                                             <outlet property="watchersLabel" destination="GIY-Ag-0p8" id="Aky-3m-zJ3"/>
                                         </connections>
                                     </tableViewCell>

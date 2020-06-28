@@ -75,6 +75,7 @@ class MainViewController: UIViewController {
             cell.watchersLabel.text = String(item.watchers)
             cell.forksLabel.text = String(item.forks)
             cell.languageLabel.text = item.language
+            cell.viewedLabel.isHidden = !item.viewed
             
             return cell
             
@@ -178,9 +179,8 @@ class MainViewController: UIViewController {
                 let currentSection = sections[indexPath.section]
                 
                 if case let .repositories(items) = currentSection,
-                    case let .repository(item) = items[indexPath.row],
-                    let url = URL(string: item.webUrl) {
-                    UIApplication.shared.open(url)
+                    case let .repository(item) = items[indexPath.row] {
+                    self.viewModel.selectRepository(item)
                 } else if case let .searchQueries(items) = currentSection,
                     case let .searchQuery(item) = items[indexPath.row],
                     let request = item.request {
