@@ -138,6 +138,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Search view visibility
         if let searchView = tableView.tableHeaderView {
             viewModel.showSearchBar
                 .subscribe(onNext: { showSearchView in
@@ -147,12 +148,14 @@ class MainViewController: UIViewController {
                 .disposed(by: disposeBag)
         }
         
+        // Prepare for search
         searchField.rx.text
             .subscribe(onNext: { text in
                 self.viewModel.willSearchAction(query: text ?? "")
             })
             .disposed(by: disposeBag)
         
+        // Search action
         searchField.rx.controlEvent(.editingDidEndOnExit)
             .flatMap(viewModel.searchAction)
             .subscribe(onError: { _ in
@@ -162,10 +165,12 @@ class MainViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        // TableView data source
         viewModel.sections.asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
+        // Pagination
         tableView.rx.contentOffset
             .filter { offset -> Bool in
                 let tableViewMaxOffset = self.tableView.contentSize.height - self.tableView.frame.height
@@ -179,6 +184,7 @@ class MainViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        // Item selection
         tableView.rx.itemSelected
             .subscribe(onNext: { indexPath in
                 self.tableView.deselectRow(at: indexPath, animated: true)
@@ -198,6 +204,7 @@ class MainViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        // Item deletion
         tableView.rx.itemDeleted
             .subscribe(onNext: { indexPath in
                 self.viewModel.deleteSearchQuery(at: indexPath.row)
