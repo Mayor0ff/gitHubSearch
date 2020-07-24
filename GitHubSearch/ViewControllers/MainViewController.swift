@@ -144,18 +144,7 @@ class MainViewController: UIViewController {
                 for: indexPath) as! GitHubRepositoryCell
             
             cell.nameLabel.text = item.name
-            
-            if let description = item.repositoryDescription {
-                if description.count > 30 {
-                    let finalIndex = description.index(
-                        description.startIndex,
-                        offsetBy: 27)
-                    cell.descriptionLabel.text = String(description[..<finalIndex]) + "..."
-                } else {
-                    cell.descriptionLabel.text = description
-                }
-            }
-            
+            cell.descriptionLabel.text =  item.repositoryDescription
             cell.starsLabel.text = String(item.stars)
             cell.watchersLabel.text = String(item.watchers)
             cell.forksLabel.text = String(item.forks)
