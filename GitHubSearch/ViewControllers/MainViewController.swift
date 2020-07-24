@@ -14,112 +14,15 @@ import Kingfisher
 
 class MainViewController: UIViewController {
     public var viewModel: MainViewModel!
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchField: UITextField!
     
-    private lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel>(configureCell: {
-        (dataSource, tableView, indexPath, item) -> UITableViewCell in
-        
-        switch item {
-        case .auth(let authItem):
-            if authItem.isLoggedIn, let currentUser = authItem.currentUser {
-                let cell = tableView.dequeueReusableCell(
-                    withIdentifier: "currentUserCell",
-                    for: indexPath) as! CurrentUserCell
-                
-                cell.usernameLabel.text = currentUser.username
-                cell.bioLabel.text = currentUser.bio
-                
-                if let url = URL(string: currentUser.profilePictureUrl) {
-                    cell.profilePictureImageView.kf.setImage(with: url)
-                }
-                
-                cell.signOutButton.rx.tap
-                    .subscribe(onNext: self.signOutTap)
-                    .disposed(by: cell.disposeBag)
-                
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(
-                    withIdentifier: "signInCell",
-                    for: indexPath) as! SignInCell
-                
-                cell.signInButton.rx.tap
-                    .subscribe(onNext: self.onSignInTap)
-                    .disposed(by: cell.disposeBag)
-                
-                return cell
-            }
-            
-        case .repository(let item):
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: "repositoryCell",
-                for: indexPath) as! GitHubRepositoryCell
-            
-            cell.nameLabel.text = item.name
-            
-            if let description = item.repositoryDescription {
-                if description.count > 30 {
-                    let finalIndex = description.index(
-                        description.startIndex,
-                        offsetBy: 27)
-                    cell.descriptionLabel.text = String(description[..<finalIndex]) + "..."
-                } else {
-                    cell.descriptionLabel.text = description
-                }
-            }
-            
-            cell.starsLabel.text = String(item.stars)
-            cell.watchersLabel.text = String(item.watchers)
-            cell.forksLabel.text = String(item.forks)
-            cell.languageLabel.text = item.language
-            cell.viewedLabel.isHidden = !item.viewed
-            
-            return cell
-            
-        case .loading:
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: "loadingCell",
-                for: indexPath) as! LoadingCell
-            
-            cell.stopButton.rx.tap
-                .subscribe(onNext: self.viewModel.stopLoadingAction)
-                .disposed(by: cell.disposeBag)
-            
-            return cell
-            
-        case .searchQuery(let item):
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: "searchQueryCell",
-                for: indexPath) as! SearchQueryCell
-            
-            cell.searchQuerylabel.text = item.query
-            
-            return cell
-        }
-    }, titleForHeaderInSection: { dataSource, index in
-        let section = dataSource.sectionModels[index]
-        
-        switch section {
-        case .auth(items: let items):
-            return nil
-        case .repositories(items: let items):
-            return "Repositories"
-        case .searchQueries(items: let items):
-            return "Search history"
-        }
-    }, canEditRowAtIndexPath: { dataSource, indexPath in
-        switch dataSource.sectionModels[indexPath.section] {
-        case .auth:
-            return false
-        case .repositories:
-            return false
-        case .searchQueries:
-            return true
-        }
-    })
+    private lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel>(
+        configureCell: configureCell,
+        titleForHeaderInSection: titleForHeaderInSection,
+        canEditRowAtIndexPath: canEditRowAtIndexPath)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -197,6 +100,122 @@ class MainViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    // MARK: Table View
+    private func configureCell(
+        dataSource: TableViewSectionedDataSource<SectionModel>,
+        tableView: UITableView,
+        indexPath: IndexPath,
+        item: SectionItem
+    ) -> UITableViewCell {
+        switch item {
+        case .auth(let authItem):
+            if authItem.isLoggedIn, let currentUser = authItem.currentUser {
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "currentUserCell",
+                    for: indexPath) as! CurrentUserCell
+                
+                cell.usernameLabel.text = currentUser.username
+                cell.bioLabel.text = currentUser.bio
+                
+                if let url = URL(string: currentUser.profilePictureUrl) {
+                    cell.profilePictureImageView.kf.setImage(with: url)
+                }
+                
+                cell.signOutButton.rx.tap
+                    .subscribe(onNext: self.signOutTap)
+                    .disposed(by: cell.disposeBag)
+                
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "signInCell",
+                    for: indexPath) as! SignInCell
+                
+                cell.signInButton.rx.tap
+                    .subscribe(onNext: self.onSignInTap)
+                    .disposed(by: cell.disposeBag)
+                
+                return cell
+            }
+            
+        case .repository(let item):
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: "repositoryCell",
+                for: indexPath) as! GitHubRepositoryCell
+            
+            cell.nameLabel.text = item.name
+            
+            if let description = item.repositoryDescription {
+                if description.count > 30 {
+                    let finalIndex = description.index(
+                        description.startIndex,
+                        offsetBy: 27)
+                    cell.descriptionLabel.text = String(description[..<finalIndex]) + "..."
+                } else {
+                    cell.descriptionLabel.text = description
+                }
+            }
+            
+            cell.starsLabel.text = String(item.stars)
+            cell.watchersLabel.text = String(item.watchers)
+            cell.forksLabel.text = String(item.forks)
+            cell.languageLabel.text = item.language
+            cell.viewedLabel.isHidden = !item.viewed
+            
+            return cell
+            
+        case .loading:
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: "loadingCell",
+                for: indexPath) as! LoadingCell
+            
+            cell.stopButton.rx.tap
+                .subscribe(onNext: self.viewModel.stopLoadingAction)
+                .disposed(by: cell.disposeBag)
+            
+            return cell
+            
+        case .searchQuery(let item):
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: "searchQueryCell",
+                for: indexPath) as! SearchQueryCell
+            
+            cell.searchQuerylabel.text = item.query
+            
+            return cell
+        }
+    }
+    
+    private func titleForHeaderInSection(
+        dataSource: TableViewSectionedDataSource<SectionModel>,
+        index: Int
+    ) -> String? {
+        let section = dataSource.sectionModels[index]
+        switch section {
+        case .auth:
+            return nil
+        case .repositories:
+            return "Repositories"
+        case .searchQueries:
+            return "Search history"
+        }
+    }
+    
+    private func canEditRowAtIndexPath(
+        dataSource: TableViewSectionedDataSource<SectionModel>,
+        indexPath: IndexPath
+    ) -> Bool {
+        switch dataSource.sectionModels[indexPath.section] {
+        case .auth:
+            return false
+        case .repositories:
+            return false
+        case .searchQueries:
+            return true
+        }
+    }
+    
+    // MARK: Actions
     private func onSignInTap() {
         viewModel.signInAction()
             .subscribe(onError: { error in

@@ -18,7 +18,13 @@ enum GitHubMoyaService {
 }
 
 extension GitHubMoyaService: TargetType {
-    var baseURL: URL { URL(string: "https://api.github.com")! }
+    var baseURL: URL {
+        guard let url = URL(string: "https://api.github.com") else {
+            preconditionFailure("Incorrect URL")
+        }
+        
+        return url
+    }
     
     var path: String {
         switch self {

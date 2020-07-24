@@ -56,8 +56,9 @@ extension SectionModel: SectionModelType {
     }
 }
 
-class MainViewModel: ViewModel {
-    private var service: GitHubService
+class MainViewModel {
+    private let service: GitHubService
+    private let openUrlService: OpenUrlService
     
     private var searchQuery: String
     private var searchRequest: SearchRequest?
@@ -66,8 +67,9 @@ class MainViewModel: ViewModel {
     public var showSearchBar: BehaviorSubject<Bool>
     public var sections: BehaviorSubject<[SectionModel]>
     
-    required init(withService service: GitHubService) {
+    required init(withService service: GitHubService, openUrlService: OpenUrlService) {
         self.service = service
+        self.openUrlService = openUrlService
         
         self.searchQuery = ""
         self.isLoading = false

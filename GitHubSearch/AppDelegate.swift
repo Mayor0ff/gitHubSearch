@@ -17,14 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
-        if let rootNavigationController = window?.rootViewController as? UINavigationController,
-            let rootViewController = rootNavigationController.topViewController as? MainViewController {
-            let realm = try! Realm()
-            let gitHubService = GitHubService(realm: realm)
-            
-            let mainViewModel = MainViewModel(withService: gitHubService)
-            rootViewController.viewModel = mainViewModel
+        guard let rootNC = window?.rootViewController as? UINavigationController,
+            let rootVC = rootNC.topViewController as? MainViewController
+        else {
+            preconditionFailure("Root view controller not found")
         }
+        
+        let realm = try! Realm()
+        let gitHubService = GitHubService(realm: realm)
+        let openUrlService = ApplicationOpenUrlService()
+        
+        let mainViewModel = MainViewModel(
+            withService: gitHubService,
+            openUrlService: openUrlService)
+        rootVC.viewModel = mainViewModel
         
         return true
     }

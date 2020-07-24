@@ -12,5 +12,5 @@ import RxSwift
 class LoadingCell: UITableViewCell {
     @IBOutlet weak var stopButton: UIButton!
     
-    public var disposeBag = DisposeBag()
+    public let disposeBag = DisposeBag()
 }

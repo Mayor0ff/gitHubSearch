@@ -22,7 +22,7 @@ class GitHubService {
     private var oauthProvider: OAuthProvider
     private var realm: Realm
     
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     public init(realm: Realm) {
         self.apiProvider = MoyaProvider<GitHubMoyaService>()
@@ -55,6 +55,8 @@ class GitHubService {
             .asSingle()
     }
     
+    // Можно было бы сделать какой нибудь экстеншен, который бы энкодил словарь
+    // в JSON data, а затем парсить его через Codable, но не вижу ничего плохого и в этой реализации
     private func parseUserModel(from authResult: AuthDataResult) throws -> UserModel {
         guard let profile = authResult.additionalUserInfo?.profile,
             let username = profile["login"] as? String,

@@ -16,5 +16,5 @@ class CurrentUserCell: UITableViewCell {
     
     @IBOutlet weak var signOutButton: UIButton!
     
-    public var disposeBag = DisposeBag()
+    public let disposeBag = DisposeBag()
 }

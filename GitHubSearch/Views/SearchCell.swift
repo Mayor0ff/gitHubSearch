@@ -12,5 +12,5 @@ import RxSwift
 class SearchCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     
-    public var disposeBag = DisposeBag()
+    public let disposeBag = DisposeBag()
 }
